@@ -1,9 +1,11 @@
 package com.example.ezra.serviceexample;
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
+import android.widget.Toast;
 
 public class HelloService extends Service {
 
@@ -14,7 +16,6 @@ public class HelloService extends Service {
     @Override
     public void onCreate() {
         Log.i(TAG, "Service onCreate");
-
         isRunning = true;
     }
 
@@ -22,14 +23,13 @@ public class HelloService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
 
         Log.i(TAG, "Service onStartCommand");
-
+        Context context = getApplicationContext();
+        Toast.makeText(context, "Service onStartCommand", Toast.LENGTH_SHORT).show();
         //Creating new thread for my service
         //Always write your long running tasks in a separate thread, to avoid ANR
         new Thread(new Runnable() {
             @Override
             public void run() {
-
-
                 //Your logic that service will perform will be placed here
                 //In this example we are just looping and waits for 1000 milliseconds in each loop.
                 for (int i = 0; i < 5; i++) {
@@ -42,7 +42,6 @@ public class HelloService extends Service {
                         Log.i(TAG, "Service running");
                     }
                 }
-
                 //Stop service once it finishes its task
                 stopSelf();
             }

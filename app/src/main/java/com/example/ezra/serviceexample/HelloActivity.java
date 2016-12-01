@@ -15,7 +15,6 @@ public class HelloActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hello);
 
-
         //starting service
         findViewById(R.id.start_service).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -25,7 +24,6 @@ public class HelloActivity extends Activity {
             }
         });
 
-
         //service onDestroy callback method will be called
         findViewById(R.id.stop_Service).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,6 +32,5 @@ public class HelloActivity extends Activity {
                 stopService(intent);
             }
         });
-
     }
 }
